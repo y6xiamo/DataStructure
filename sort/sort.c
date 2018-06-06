@@ -241,7 +241,40 @@ void HeapSort(int arr[],int size)
 //     空间复杂度：
 //     稳定性：
 /////////////////////////////////////
-
+void ShellSort(int arr[],int size)
+{
+    if(arr == NULL)
+    {
+        return;
+    }
+    if(size <= 1)
+    {
+        return;
+    }
+    int gap = size/2;//
+    for( ;gap > 0;gap /= 2 )
+    {
+        int bound = gap;
+        for( ;bound < size;bound++)
+        {
+            int cur = bound;
+            int bound_key = arr[bound];
+            for( ;cur >= gap;cur -= gap)
+            {
+                if(arr[cur - gap] >bound_key)
+                {
+                    arr[cur] = arr[cur - gap];
+                }
+                else
+                {
+                    break;
+                }
+            }
+            arr[cur] = bound_key;
+        }
+    }
+    return;
+}
 
 
 
@@ -251,6 +284,8 @@ void HeapSort(int arr[],int size)
 ////////////////////////////////
 //   归并排序
 //   时间复杂度: O(N * logN)
+//   空间复杂度：O(N)
+//   稳定性：稳定
 ///////////////////////////////
 void _MerageArray(int arr[],int64_t beg,int64_t mid,int64_t end,int* tmp)
 {
@@ -335,11 +370,13 @@ void MergeSortByLoop(int arr[],size_t size)
 
 }
 
-
-/////////////////////////////////
+/////////////////////////////////////////////////////
 /////  快速排序
-////   时间复杂度
-////////////////////////////////
+////   时间复杂度:平均:O(N * logN) 最坏:O(N * N)
+//     空间复杂度：O(N)
+//     稳定性：不稳定
+/////////////////////////////////////////////////////
+
 //2.挖坑法
 int64_t Partion2(int arr[],int64_t beg,int64_t end)
 {
@@ -475,16 +512,6 @@ void QuickSortByLoop(int arr[],int size)
     
 }
 
-
-
-
-
-
-
-
-
-
-
 /////////////////////////////////////////
 //////////以下是测试代码/////////////////
 /////////////////////////////////////////
@@ -548,6 +575,17 @@ void TestHeap()
     SortPrint(arr,size,"堆排序");
     printf("\n");
 }
+void TestShell()
+{
+    TEST_HEADER;
+    int arr[] = {20,18,70,52,64,92,21,58};
+    size_t size = sizeof(arr)/sizeof(arr[0]);
+
+//    printf("%lu",size);
+    ShellSort(arr,size);
+    SortPrint(arr,size,"希尔排序");
+    printf("\n");
+}
 void TestMerge()
 {
     TEST_HEADER;
@@ -577,6 +615,7 @@ int main()
     TestSelect();
     TestInsert();
     TestHeap();
+    TestShell();
     TestMerge();
     TestQuick();
     return 0;
