@@ -1,0 +1,31 @@
+#include<stddef.h>
+#include<stdlib.h>
+#include"DLinkList.h"
+
+DLinkNode* CreateDLinkNode(DLinkType value)
+{
+	DLinkNode* new_node =(DLinkNode*)malloc(sizeof(DLinkNode));
+	new_node->data = value;
+	new_node->prev = new_node;
+	new_node->next= new_node;
+	return new_node;
+}
+void DLinkListInit(DLinkNode** head)
+{
+	if(head == NULL)
+	{
+		return;       //非法输入
+	}
+
+	*head = CreateDLinkNode(0);
+
+}
+
+//////////////////////////////////////
+///////////////测试代码//////////////
+////////////////////////////////////
+#define TEST_HEADER printf("\n=================%s==================\n",_FUNCTION_)
+int main()
+{
+	return 0;
+}

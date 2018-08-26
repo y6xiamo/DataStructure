@@ -147,7 +147,7 @@ TreeNode* CloneTree(TreeNode* root)
 {
 	if(root == NULL)
 	{
-		return;//空树
+		return NULL;//空树
 	}
 	//按照先序方法来遍历
 	TreeNode* new_node = CreateTreeNode(root->data);

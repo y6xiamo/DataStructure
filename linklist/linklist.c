@@ -236,7 +236,7 @@ int  LinkListEmpty(LinkNode* phead)
 int LinkListSize(LinkNode* phead)
 {
     if(phead == NULL)
-        return;             //空链表
+        return 0;             //空链表
 
     LinkNode* cur = phead;
     size_t count = 0;
@@ -477,7 +477,7 @@ LinkNode* LinkListFindMidNode(LinkNode* phead)
 LinkNode* LinkListFindLastKNode(LinkNode* phead,int k)
 {
 	if(phead == NULL)
-		return;           //空链表
+		return NULL;           //空链表
 	
     LinkNode* fast = phead;
 	LinkNode* slow = phead;
